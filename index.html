@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no">
+    <title>Api Consumer - TestProject</title>
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <link href="https://fonts.googleapis.com/css?family=Amaranth&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+
+<body>
+    <header>
+        <h1>ApiConsumer</h1>
+        <p>Test Project for Human API</p>
+    </header>
+    <div class="cotn_main">
+        <div class="cont_center">
+            <div class="cont_login">
+                <div class="cont_info_log_sign_up">
+                    <div class="col_md_login">
+                        <div class="cont_ba_opcitiy">
+                            <h2>Login</h2>
+                            <p>I alreay have an account.</p>
+                            <button class="btn_login" onclick="change_login()">Login</button>
+                        </div>
+                    </div>
+
+                    <div class="col_md_sign_up">
+                        <div class="cont_ba_opcitiy">
+                            <h2>Sign up</h2>
+                            <p>I want to register an account.</p>
+                            <button class="btn_sign_up" onclick="change_sign_up()">Sign up</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="cont_back_info">
+                    <div class="cont_img_back_grey">
+                        <img src="https://bitsum.com/wp-content/uploads/dark-background-images-5561-5821-hd-wallpapers.jpg"
+                            alt="" />
+                    </div>
+                </div>
+                <div class="cont_forms">
+                    <div class="cont_img_back_">
+                        <img src="https://bitsum.com/wp-content/uploads/dark-background-images-5561-5821-hd-wallpapers.jpg"
+                            alt="" />
+                    </div>
+                    <div class="cont_form_login">
+                        <a href="#" onclick="hide_login_sign_up()"><i class="material-icons">&#xe5c9;</i></a>
+                        <h2>Login</h2>
+                        <input type="text" id="txt_email_login" placeholder="Email" />
+                        <input type="password" id="txt_password_login" placeholder="Password" />
+                        <button class="btn_login" onclick="login();">Login</button>
+                    </div>
+                    <div class="cont_form_sign_up">
+                        <a href="#" onclick="hide_login_sign_up()"><i class="material-icons">&#xe5c9;</i></a>
+                        <h2>Sign up</h2>
+                        <input type="text" id="txt_name" placeholder="Nombre" />
+                        <select id="dll_rol" class="select_login">
+                            <option value="0">Seleccione</option>
+                            <option value="Administrador">Administrador</option>
+                            <option value="Generic">Generico</option>
+                        </select>
+                        <input type="email" id="txt_email" placeholder="Email" />
+                        <input type="password" id="txt_password" placeholder="Password" />
+                        <input type="password" id="txt_confirm_password" placeholder="Confirm Password" />
+                        <button class="btn_sign_up" onclick="sing_up()">Sign up</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script type="text/javascript" src="./assets/js/scripts.js"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.js"
+integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+crossorigin="anonymous"></script>
+
+
+
+<script>
+var miStorage = window.localStorage;
+var url_api = 'http://localhost:3000/api/';
+
+function cleanData(){
+$("#txt_email").val("");
+$("#txt_password").val("");
+$("#txt_confirm_password").val("");
+$("#txt_name").val("");
+$("#dll_rol").val("0").trigger('change');
+$("#txt_email_login").val("");
+$("#txt_password_login").val("");
+
+}
+
+function init(){
+miStorage.clear();
+cleanData();
+
+}
+
+
+function login(){
+var regex = /[\w-\.]{2,}@([\w-]{2,}\.)*([\w-]{2,}\.)[\w-]{2,4}/;
+const email = $("#txt_email_login").val();
+const password = $("#txt_password_login").val();   
+const data = {
+    email:email,
+    password:password
+};
+
+if (!regex.test($('#txt_email_login').val().trim())) {
+    alert("Ingrese un correo valido")
+    return false;
+}
+
+if(email != "" && password != ""){
+$.post(url_api +'user/login', data, function( data ) {
+    miStorage.setItem('token', data.tokenReturn);
+}, "json");
+}else{
+    alert("Falta llenar Campos");
+}
+
+}
+
+
+
+function sing_up(){
+var regex = /[\w-\.]{2,}@([\w-]{2,}\.)*([\w-]{2,}\.)[\w-]{2,4}/;
+
+const email = $("#txt_email").val();
+const password = $("#txt_password").val();
+const password_confirm = $("#txt_confirm_password").val();
+const name = $("#txt_name").val();
+const rol = $("#dll_rol option:selected").val();
+const data = {
+    email:email,
+    password:password,
+    rol:rol,
+    name:name
+};
+
+if (!regex.test($('#txt_email').val().trim())) {
+    alert("Ingrese un correo valido");
+    return false;
+}
+
+if(email != "" && password != "" && name != "" && rol != "0"){
+$.post(url_api +'user/add', data, function( data ) {
+hide_login_sign_up();
+
+
+}, "json");
+}else{
+    alert("Falta llenar Campos");
+}
+
+}
+
+
+
+
+</script>
+
+
+</html>
