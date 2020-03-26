@@ -118,6 +118,7 @@ if (!regex.test($('#txt_email_login').val().trim())) {
 if(email != "" && password != ""){
 $.post(url_api +'user/login', data, function( data ) {
     miStorage.setItem('token', data.tokenReturn);
+    window.location.href = "./show_apis.html";
 }, "json");
 }else{
     alert("Falta llenar Campos");

@@ -1,0 +1,390 @@
+
+
+   <html lang="es">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="description" content="">
+        <title>Api_consumer | V0.1</title>
+        <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
+        <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+        integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+        <link href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css" rel="stylesheet">
+    
+    
+        <style>
+    
+            .table-ms{
+              border: 1px solid #dee2e6;
+               border-radius: 5px;
+            }
+            .card-header {
+                background-color: #16599f;
+                color: #fff;
+            }
+    
+            .table .thead-dark th {
+                background-color: #16599f;
+                border-color: #fff;
+            }
+    
+            .custom-file-input~.custom-file-label::after {
+                content: "Seleccionar";
+            }
+    
+            .btn-primary {
+                background-color: #16599f;
+                border-color: #16599f;
+            }
+    
+            a.navbar-brand {
+                color: white;
+            }
+    
+            a.nav-item {
+                color: white;
+            }
+    
+            .nav-tabs-custom>.nav-tabs>li.active {
+                border-top-color: #ffc11e;
+                border-radius: 5px;
+            }
+    
+            .nav-tabs-custom>.nav-tabs>li {
+                border-top: 4px solid transparent;
+                margin-bottom: -2px;
+                margin-right: 5px;
+            }
+    
+            .nav-tabs-custom>.nav-tabs {
+                margin: 0;
+                border-bottom-color: #f4f4f4;
+                border-top-right-radius: 3px;
+                border-top-left-radius: 3px;
+            }
+    
+            .nav-tabs {
+                border-bottom: 1px solid #ddd;
+            }
+    
+            .nav {
+                padding-left: 0;
+                margin-bottom: 0;
+                list-style: none;
+            }
+    
+            .nav-tabs-custom>.nav-tabs>li:first-of-type.active>a {
+                border-left-color: transparent;
+            }
+    
+            .nav-tabs-custom>.nav-tabs>li:first-of-type.active>a {
+                border-left-color: transparent;
+            }
+    
+            .nav-tabs-custom>.nav-tabs>li.active>a,
+            .nav-tabs-custom>.nav-tabs>li.active:hover>a {
+                background-color: #fff;
+                color: #444;
+            }
+    
+            .nav-tabs-custom>.nav-tabs>li.active>a,
+            .nav-tabs-custom>.nav-tabs>li.active:hover>a {
+                background-color: #fff;
+                color: #444;
+            }
+    
+            .nav-tabs-custom>.nav-tabs>li.active>a,
+            .nav-tabs-custom>.nav-tabs>li.active:hover>a {
+                background-color: #fff;
+                color: #444;
+            }
+    
+            .nav-tabs-custom>.nav-tabs>li.active>a,
+            .nav-tabs-custom>.nav-tabs>li.active:hover>a {
+                background-color: #fff;
+                color: #444;
+            }
+    
+            .nav-tabs>li>a {
+                margin-right: 2px;
+                line-height: 1.42857143;
+                border: 1px solid transparent;
+                border-radius: 4px 4px 0 0;
+            }
+    
+            .nav>li>a {
+                position: relative;
+                display: block;
+                padding: 10px 15px;
+                color: black;
+            }
+    
+            .dataTables_paginate a.paginate_button.previous {
+                display: none;
+            }
+    
+            .dataTables_paginate a.paginate_button.next {
+                display: none;
+            }
+            .container-spinner{
+                z-index: 200;
+                position: fixed;
+                width: 100%;
+                opacity: 0.2;
+                height: 100%;
+                background-color: wheat;
+            
+            }
+            .spinner{
+                width: 80px;
+                height: 80px;
+                z-index: 9999;
+                border: 2px solid #f3f3f3;
+                border-top:3px solid red;
+                border-radius: 100%;
+                position: fixed;
+                top:0;
+                bottom:0;
+                left:0;
+                right: 0;
+                margin: auto;
+                
+                animation: spin 1s infinite linear;
+            }
+    
+            @keyframes spin {
+                from{
+                    transform: rotate(0deg);
+                }to{
+                    transform: rotate(360deg);
+                }
+            }
+    
+    
+    
+            
+        </style>
+    
+    <body>
+        <div class="container-spinner">
+            <div class="spinner">
+            </div>
+        </div>
+        <div class="container-fluid" style="padding: 50px 90px;">
+    
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <b>Api Consumer</b>
+                        </div>
+    
+                        <div class="card-body">
+                            <div class="col-xs-12">
+                                <div class="nav-tabs-custom">
+                                    <ul class="nav nav-tabs">
+                                        <li class="active"><a href="#nav1" data-toggle="tab" aria-expanded="false"
+                                                class="active show">Reportes</a></li>
+                                    </ul>
+    
+    
+                                    <div class="tab-content">
+    
+    
+                                        <div class="tab-pane active show" id="nav1">
+                                            <br>
+                                            <div class="row">
+                                                <div class="col-lg-2">
+                                                    <div class="form-group">
+                                                        <button class="btn btn-success" onclick="RestultReport('api_one');"
+                                                            type="button"> Api Consumer Profile</button>
+                                                    </div>
+                                                </div>
+    
+                                                <div class="col-lg-2">
+                                                    <div class="form-group">
+                                                        <button class="btn btn-success" onclick="RestultReport('api_two');"
+                                                            type="button" >Api Consumer Sleeps</button>
+                                                    </div>
+                                                </div>
+    
+                                                <div class="col-lg-2">
+                                                    <div class="form-group">
+                                                        <button class="btn btn-success" onclick="RestultReport('api_three');"
+                                                            type="button" >Api Consumer Locations</button>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-2">
+                                                    <div class="form-group">
+                                                        <button class="btn btn-success" onclick="RestultReport('api_four');"
+                                                            type="button" >Api Consumer Weight</button>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-lg-2">
+                                                    <div class="form-group">
+                                                        <button class="btn btn-success" onclick="RestultReport('api_five');"
+                                                            type="button" >Api Consumer Activities</button>
+                                                    </div>
+                                                </div>
+    
+    
+                                            </div>
+       
+                                        
+                                   
+                                            <hr>
+    
+                                            <div class="row" style="  border: 2px #EDEFF5 solid;
+                                            padding: 30px 30px;
+                                            align-items: center;
+                                            border-radius: 4px;overflow: scroll;">
+                                               
+                                                <div class="col-lg-12" id="contenedor_reportes">
+    
+    
+                                                </div>
+                                              
+                                            </div>
+    
+                                        </div>
+    
+    
+    
+                                
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+    
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+            <script src="https://code.jquery.com/jquery-3.4.1.js"
+            integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+            crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"
+            integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4"
+            crossorigin="anonymous"></script>
+        <script type="text/javascript"
+            src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+      <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+    
+    </body>
+    
+    
+    
+    <script>
+      
+          $('li > a').click(function () {
+              $('li').removeClass();
+              $(this).parent().addClass('active');
+          });
+          function loader(valor){
+    
+        if(valor == false){
+    
+        $(".container-spinner").css("display","none");
+        }else{
+    
+        $(".container-spinner").css("display","block");
+        }
+    
+        }
+   
+        var uri_dev = "http://localhost:3000/api/apis/";
+        var REPORTES=[]; 
+       
+    
+         function init(){
+            console.log(localStorage.getItem('token'));
+            loader(false);
+        }
+          init();
+
+            
+
+        async function RestultReport(valor){
+            loader(true);
+            await $.ajax({
+                url: uri_dev +valor,
+                type: 'get',
+                headers: {
+                   token: localStorage.getItem('token')
+                },
+                dataType: 'json',
+                success: function (data) {
+         
+                REPORTES = JSON.parse(data.body);  
+                  
+                }
+            }).catch(x=>{
+                if(x.status == 403){
+                alert(x.responseJSON.message);
+                REPORTES = [];
+                }
+
+            });
+            await CreateDataTable(REPORTES,'table_reportes','contenedor_reportes');
+            loader(false);
+        }
+
+          function CreateDataTable(data,nameTable,contenedor) {
+            response = data;
+            let txt = "";
+            let headers = [];
+            if(response.length>0){
+                columns = Object.keys(response[0]);
+            txt += '<table   class="table table-ms table-hover dataTable responsive " style="margin-bottom: 12px !important; " id="'+nameTable+'">';
+            txt += '<thead>';
+            txt += '<tr style="background-color: #16599f;color:white;">';
+            for (x in columns) {
+            txt += "<th>" + columns[x] + "</th>";
+            headers.push({ data: columns[x] });
+            }
+            txt += "</tr>"
+            txt += "</thead>"
+            document.getElementById(contenedor).innerHTML = txt;
+            table = $('#'+nameTable).DataTable({
+            data: data,
+            columns: headers,
+            "aProcessing": true,//Activamos el procesamiento del datatables
+            "aServerSide": true,//Paginación y filtrado realizados por el servidor
+            dom: 'Bfrtip',//Definimos los elementos del control de tabla
+            "searching": true,
+            "language": {
+                "decimal": "",
+                "emptyTable": "No hay información",
+                "info": "Mostrando _START_ a _END_ de _TOTAL_ Entradas",
+                "infoEmpty": "Mostrando 0 to 0 of 0 Entradas",
+                "infoFiltered": "(Filtrado de _MAX_ total entradas)",
+                "infoPostFix": "",
+                "thousands": ",",
+                "lengthMenu": "Mostrar _MENU_ Entradas",
+                "loadingRecords": "Cargando...",
+                "processing": "Procesando...",
+                "search": "Filtrar:",
+                "zeroRecords": "Sin resultados encontrados",
+                "paginate": {
+                "first": "Primero",
+                "last": "Ultimo",
+                "next": "Siguiente",
+                "previous": "Anterior"
+                }
+            }
+            });
+            }else{
+                document.getElementById(contenedor).innerHTML = '';
+
+            }
+           
+            }
+    
+
+
+    
+    </script>
+    
+    </html>
